@@ -1,3 +1,3 @@
 return {
-  'beauwilliams/statusline.lua',
+--  'beauwilliams/statusline.lua',
 }
