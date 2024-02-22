@@ -3,7 +3,7 @@ return {
   keys = { "<space>m", "<space>j", "<space>s" },
   dependencies = { "nvim-treesitter/nvim-treesitter" },
   config = function()
-    require('treesj').setup {
+    require("treesj").setup {
       max_joun_length = 120,
       cursor_behavior = 'hold',
       notify = true,
