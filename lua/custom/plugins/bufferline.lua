@@ -17,7 +17,7 @@ return {
             filetype = "neo-tree",
             text = "File Explorer",
             highlight = "Directory",
-            separator = true,
+--            separator = true,
           }
         }
       }
