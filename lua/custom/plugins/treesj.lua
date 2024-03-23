@@ -11,6 +11,8 @@ return {
         lua = require("treesj.langs.lua"),
         php = require("treesj.langs.php"),
         typescript = require("treesj.langs.typescript"),
+        html = require("treesj.langs.html"),
+        css = require("treesj.langs.css"),
       },
       dot_repeat = true,
     }
