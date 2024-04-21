@@ -1,29 +1,29 @@
 return {
-  "akinsho/bufferline.nvim",
-  version = "*",
+  'akinsho/bufferline.nvim',
+  version = '*',
   dependencies = {
-    "nvim-tree/nvim-web-devicons"
+    'nvim-tree/nvim-web-devicons',
   },
-  config = function ()
+  config = function()
     vim.opt.termguicolors = true
-    require("bufferline").setup {
+    require('bufferline').setup {
       options = {
-        mode = "buffers",
+        mode = 'buffers',
         -- style_preset = require("bufferline"),
-        separator_style = "slant",
-        diagnostics = "coc",
+        separator_style = 'slant',
+        diagnostics = 'coc',
         offsets = {
           {
-            filetype = "neo-tree",
-            text = "File Explorer",
-            highlight = "Directory",
---            separator = true,
-          }
-        }
-      }
+            filetype = 'neo-tree',
+            text = 'File Explorer',
+            highlight = 'Directory',
+            -- separator = true,
+          },
+        },
+      },
     }
 
-    vim.keymap.set("n", "<tab>", ":bnext<CR>")
-    vim.keymap.set("n", "<S-tab>", ":bprevious<CR>")
-  end
+    vim.keymap.set('n', '<tab>', ':bnext<CR>')
+    vim.keymap.set('n', '<S-tab>', ':bprevious<CR>')
+  end,
 }

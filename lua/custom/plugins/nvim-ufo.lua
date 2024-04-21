@@ -1,9 +1,9 @@
 return {
-  "kevinhwang91/nvim-ufo",
+  'kevinhwang91/nvim-ufo',
   dependencies = {
-    "kevinhwang91/promise-async",
+    'kevinhwang91/promise-async',
   },
---  config = function()
---    require("ufo").setup {}
---  end
+  --  config = function()
+  --    require("ufo").setup {}
+  --  end
 }
