@@ -592,6 +592,8 @@ require('lazy').setup({
             },
           },
         },
+        stimulus_ls = {},
+        intelephense = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -652,6 +654,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        php = { 'php-cs-fixer' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --

@@ -1,8 +1,7 @@
 return {
   'nvimdev/lspsaga.nvim',
   dependencies = {
-    --    'nvim-treesitter/nvim-treesitter', -- optional
-    'nvim-tree/nvim-web-devicons', -- optional
+    'nvim-tree/nvim-web-devicons',
   },
 
   config = function()
