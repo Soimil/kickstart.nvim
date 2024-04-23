@@ -592,8 +592,13 @@ require('lazy').setup({
             },
           },
         },
-        stimulus_ls = {},
+        html = {},
         intelephense = {},
+        somesass_ls = {},
+        spectral = {},
+        stimulus_ls = {},
+        tsserver = {},
+        twiggy_language_server = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -609,6 +614,9 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'php-cs-fixer',
+        'prettierd',
+        'twig-cs-fixer',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -653,8 +661,16 @@ require('lazy').setup({
         }
       end,
       formatters_by_ft = {
+        css = { 'prettierd' },
+        html = { 'prettierd' },
+        javascript = { 'prettierd' },
+        json = { 'prettierd' },
         lua = { 'stylua' },
-        php = { 'php-cs-fixer' },
+        php = { 'php_cs_fixer' },
+        scss = { 'prettierd' },
+        twig = { 'twig-cs-fixer' },
+        typescript = { 'prettierd' },
+        yaml = { 'prettierd' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
