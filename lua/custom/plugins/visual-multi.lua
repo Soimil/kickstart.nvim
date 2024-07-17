@@ -14,15 +14,13 @@ return {
       vim.cmd 'silent! execute "normal! A"'
     end
 
-    require('which-key').register({
-      m = {
-        name = 'Visual Multi',
-        a = { '<Plug>(VM-SelectAll)<Tab>', 'Select All', mode = { 'n' } },
-        r = { '<Plug>(VM-StartRegex-Search)', 'Start Regex Search', mode = { 'n' } },
-        p = { '<Plug>(VM-Add-Cursor-At-Pos)', 'Add Cursor At Pos', mpde = { 'n' } },
-        v = { visual_cursors_with_delay, 'Visual Cursors', mode = { 'v' } },
-        o = { '<Plug>(VM-Toggle-Mappings)', 'Toggle Mappings', mode = { 'n' } },
-      },
-    }, { prefix = '<leader>' })
+    require('which-key').add {
+      { '<leader>m', group = 'Visual Multi' },
+      { '<leader>ma', '<PLug>(VM-SelectAll)<Tab>', desc = 'Select All', mode = 'n' },
+      { '<leader>mr', '<Plug>(VM-StartRegex-Search)', desc = 'Start Regex Search', mode = 'n' },
+      { '<leader>mp', '<Plug>(VM-Add-Cursor-At-Pos)', derc = 'Add Cursor At Pos', mpde = 'n' },
+      { '<leader>mv', visual_cursors_with_delay, desc = 'Visual Cursors', mode = 'v' },
+      { '<leader>mo', '<Plug>(VM-Toggle-Mappings)', desc = 'Toggle Mappings', mode = 'n' },
+    }
   end,
 }

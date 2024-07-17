@@ -11,18 +11,16 @@ return {
       },
     }
 
-    require('which-key').register({
-      l = {
-        name = 'Lspsaga',
-        c = { '<cmd>Lspsaga code_action<cr>', 'Code Action' },
-        o = { '<cmd>Lspsaga outline<cr>', 'Outline' },
-        r = { '<cmd>Lspsaga rename<cr>', 'Rename' },
-        d = { '<cmd>Lspsaga goto_definition<cr>', 'Lsp GoTo Definition' },
-        f = { '<cmd>Lspsaga finder<cr>', 'Lsp Finder' },
-        p = { '<cmd>Lspsaga preview_definition<cr>', 'Preview Definition' },
-        s = { '<cmd>Lspsaga signature_help<cr>', 'Signature Help' },
-        w = { '<cmd>Lspsaga show_workspace_diagnostics<cr>', 'Show Workspace Diagnostics' },
-      },
-    }, { prefix = '<leader>' })
+    require('which-key').add {
+      { '<leader>l', group = 'Lspsaga' },
+      { '<leader>lc', '<cmd>Lspsaga code_action<cr>', desc = 'Code Action' },
+      { '<leader>lo', '<cmd>Lspsaga outline<cr>', desc = 'Outline' },
+      { '<leader>lr', '<cmd>Lspsaga rename<cr>', desc = 'Rename' },
+      { '<leader>ld', '<cmd>Lspsaga goto_definition<cr>', desc = 'Lsp GoTo Definition' },
+      { '<leader>lf', '<cmd>Lspsaga finder<cr>', desc = 'Lsp Finder' },
+      { '<leader>lp', '<cmd>Lspsaga preview_definition<cr>', desc = 'Preview Definition' },
+      { '<leader>ls', '<cmd>Lspsaga signature_help<cr>', desc = 'Signature Help' },
+      { '<leader>lw', '<cmd>Lspsaga show_workspace_diagnostics<cr>', desc = 'Show Workspace Diagnostics' },
+    }
   end,
 }
