@@ -18,7 +18,7 @@ return {
       { '<leader>m', group = 'Visual Multi' },
       { '<leader>ma', '<PLug>(VM-SelectAll)<Tab>', desc = 'Select All', mode = 'n' },
       { '<leader>mr', '<Plug>(VM-StartRegex-Search)', desc = 'Start Regex Search', mode = 'n' },
-      { '<leader>mp', '<Plug>(VM-Add-Cursor-At-Pos)', derc = 'Add Cursor At Pos', mpde = 'n' },
+      { '<leader>mp', '<Plug>(VM-Add-Cursor-At-Pos)', desc = 'Add Cursor At Pos', mode = 'n' },
       { '<leader>mv', visual_cursors_with_delay, desc = 'Visual Cursors', mode = 'v' },
       { '<leader>mo', '<Plug>(VM-Toggle-Mappings)', desc = 'Toggle Mappings', mode = 'n' },
     }
