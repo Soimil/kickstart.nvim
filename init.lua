@@ -637,7 +637,7 @@ require('lazy').setup({
         somesass_ls = {},
         spectral = {},
         stimulus_ls = {},
-        tsserver = {},
+        ts_ls = {},
         twiggy_language_server = {},
       }
 
