@@ -13,6 +13,7 @@ return {
         typescript = require 'treesj.langs.typescript',
         html = require 'treesj.langs.html',
         css = require 'treesj.langs.css',
+        elixir = require 'treesj.langs.elixir',
       },
       dot_repeat = true,
     }
