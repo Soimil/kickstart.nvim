@@ -10,10 +10,12 @@ return {
       langs = {
         lua = require 'treesj.langs.lua',
         php = require 'treesj.langs.php',
-        typescript = require 'treesj.langs.typescript',
         html = require 'treesj.langs.html',
         css = require 'treesj.langs.css',
+        scss = require 'treesj.langs.scss',
         elixir = require 'treesj.langs.elixir',
+        typescript = require 'treesj.langs.typescript',
+        python = require 'treesj.langs.python',
       },
       dot_repeat = true,
     }
