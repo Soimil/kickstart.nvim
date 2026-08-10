@@ -1,0 +1,12 @@
+# Personal customizations are exempt from stylua.
+#
+# Why: the files under lua/custom/ use deliberate column alignment in keymap tables
+# (rhs and `desc` line up so the whole block is scannable). Stylua has no way to
+# preserve that — it collapses every run of spaces to one — so running it there would
+# trade real readability for formatter conformance.
+#
+# The upstream kickstart files (init.lua, lua/kickstart/**) stay under stylua's
+# control, which is what the CI check exists to protect.
+#
+# To opt back in: delete this file and run `stylua .`
+lua/custom/

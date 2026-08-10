@@ -2,15 +2,11 @@
 -- We re-call setup with extended options for VSCode-like inline blame
 -- and the recommended keymaps from kickstart/plugins/gitsigns.lua.
 
+-- NOTE: no `signs = {...}` block here. init.lua already sets them, and gitsigns'
+-- setup() merges into the live config instead of resetting it, so repeating the
+-- signs would only duplicate kickstart's values. Verified: calling setup{} a second
+-- time with no `signs` key leaves the previously configured signs intact.
 require('gitsigns').setup {
-  signs = {
-    add          = { text = '+' },
-    change       = { text = '~' },
-    delete       = { text = '_' },
-    topdelete    = { text = '‾' },
-    changedelete = { text = '~' },
-  },
-
   -- VSCode-like inline blame at end of line
   current_line_blame = true,
   current_line_blame_opts = {

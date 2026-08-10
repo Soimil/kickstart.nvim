@@ -20,7 +20,11 @@ require('bufferline').setup {
   },
 }
 
-vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<S-Tab>', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+-- Buffer cycling intentionally has NO mapping here: Neovim 0.11+ ships `[b` / `]b`
+-- (and `[B` / `]B` for first/last) as defaults. See `:help ]b`.
+--
+-- In particular do NOT map `<Tab>`: in most terminals `<Tab>` and `<C-i>` send the
+-- same byte, so mapping it kills `<C-i>` — the jumplist "forward" counterpart to
+-- `<C-o>`. See `:help jump-motions`.
 vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<CR>', { desc = '[B]uffer [D]elete' })
 vim.keymap.set('n', '<leader>bp', '<cmd>BufferLineTogglePin<CR>', { desc = '[B]uffer [P]in' })

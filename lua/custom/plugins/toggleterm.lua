@@ -12,4 +12,8 @@ require('toggleterm').setup {
   float_opts = { border = 'curved' },
 }
 
-vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
+-- No `<esc>` -> normal-mode mapping here on purpose.
+--
+-- Binding a bare `<esc>` in terminal mode makes Esc unusable *inside* whatever runs in
+-- the terminal — Claude Code's TUI, a nested nvim, less, fzf. kickstart already maps
+-- `<Esc><Esc>` in init.lua for leaving terminal mode, which leaves single Esc to the app.
