@@ -1,13 +1,20 @@
--- gitsigns is already installed by kickstart base in init.lua.
--- We re-call setup with extended options for VSCode-like inline blame
--- and the recommended keymaps from kickstart/plugins/gitsigns.lua.
+-- Dodatki do gitsigns ponad to, co konfiguruje baza kickstarta w `init.lua`.
+--
+-- ZASADA: kickstart jest nadrzedny. Ten plik tylko DOKLADA. Nie ma tu `signs`,
+-- nie ma `on_attach` i nie ma zadnego z keymapow `<leader>h*`, `]c`, `[c`, `ih`
+-- ani `<leader>tb` / `<leader>tw` - wszystkie te rzeczy ustawia juz `init.lua`
+-- i to jego wersja obowiazuje.
+--
+-- Wazne, gdyby ktos chcial tu dopisac `on_attach`: drugie wywolanie `setup()`
+-- NADPISALOBY `on_attach` z `init.lua` w calosci (to pojedyncze pole, nie lista),
+-- czyli po cichu skasowalo cala baze keymapow gitsigns. Dlatego dodatkowe mapowania
+-- idza przez zwykle `vim.keymap.set` ponizej, a nie przez `on_attach`.
 
--- NOTE: no `signs = {...}` block here. init.lua already sets them, and gitsigns'
--- setup() merges into the live config instead of resetting it, so repeating the
--- signs would only duplicate kickstart's values. Verified: calling setup{} a second
--- time with no `signs` key leaves the previously configured signs intact.
+-- gitsigns jest instalowany przez `init.lua`; tutaj tylko rozszerzamy konfiguracje.
+-- `setup()` scala podane klucze z zywa konfiguracja zamiast ja resetowac, wiec
+-- pominiete klucze (`signs`, `on_attach`) zostaja takie, jak ustawil je kickstart.
 require('gitsigns').setup {
-  -- VSCode-like inline blame at end of line
+  -- Blame biezacej linii na koncu linii, jak w VSCode. Kickstart tego nie wlacza.
   current_line_blame = true,
   current_line_blame_opts = {
     virt_text = true,
@@ -16,40 +23,13 @@ require('gitsigns').setup {
     ignore_whitespace = false,
   },
   current_line_blame_formatter = '   <author>, <author_time:%R> • <summary>',
-
-  on_attach = function(bufnr)
-    local gs = require 'gitsigns'
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
-
-    -- Navigation
-    map('n', ']c', function() gs.nav_hunk 'next' end, { desc = 'Next git [c]hange' })
-    map('n', '[c', function() gs.nav_hunk 'prev' end, { desc = 'Prev git [c]hange' })
-
-    -- Hunk actions
-    map('v', '<leader>hs', function() gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'git [s]tage hunk' })
-    map('v', '<leader>hr', function() gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end, { desc = 'git [r]eset hunk' })
-    map('n', '<leader>hs', gs.stage_hunk,              { desc = 'git [s]tage hunk' })
-    map('n', '<leader>hr', gs.reset_hunk,              { desc = 'git [r]eset hunk' })
-    map('n', '<leader>hS', gs.stage_buffer,            { desc = 'git [S]tage buffer' })
-    map('n', '<leader>hR', gs.reset_buffer,            { desc = 'git [R]eset buffer' })
-    map('n', '<leader>hp', gs.preview_hunk,            { desc = 'git [p]review hunk' })
-    map('n', '<leader>hi', gs.preview_hunk_inline,     { desc = 'git preview hunk [i]nline' })
-    map('n', '<leader>hb', gs.blame_line,              { desc = 'git [b]lame line (popup)' })
-    map('n', '<leader>hd', gs.diffthis,                { desc = 'git [d]iff against index' })
-    map('n', '<leader>hD', function() gs.diffthis '@' end, { desc = 'git [D]iff against last commit' })
-    map('n', '<leader>hQ', function() gs.setqflist 'all' end, { desc = 'git hunk [Q]uickfix list (all files in repo)' })
-    map('n', '<leader>hq', gs.setqflist,              { desc = 'git hunk [q]uickfix list (all changes in this file)' })
-
-    -- Toggles
-    map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = '[T]oggle git inline [b]lame' })
-    map('n', '<leader>tw', gs.toggle_word_diff,          { desc = '[T]oggle git intra-line [w]ord diff' })
-    map('n', '<leader>tD', gs.toggle_deleted,            { desc = '[T]oggle git show [D]eleted lines' })
-
-    -- Text object
-    map({ 'o', 'x' }, 'ih', gs.select_hunk, { desc = 'select git hunk' })
-  end,
 }
+
+-- Jedyne dodatkowe mapowanie: podglad usunietych linii inline.
+-- Kickstart mapuje `<leader>tb` (blame) i `<leader>tw` (word diff), ale nie ma
+-- odpowiednika dla `toggle_deleted`, wiec `<leader>tD` niczego nie przykrywa.
+--
+-- Mapowanie jest globalne, a nie buforowe: ta wersja gitsigns nie emituje zdarzenia
+-- `User GitSignsAttach`, wiec jedyna droga do mapowania buforowego bylby `on_attach`,
+-- czyli nadpisanie bazy kickstarta. Poza repozytorium git wywolanie po prostu nic nie robi.
+vim.keymap.set('n', '<leader>tD', function() require('gitsigns').toggle_deleted() end, { desc = '[T]oggle git show [D]eleted lines' })
