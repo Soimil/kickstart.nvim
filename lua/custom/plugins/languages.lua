@@ -13,15 +13,7 @@ local parsers = {
 }
 require('nvim-treesitter').install(parsers)
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = {
-    'php', 'javascript', 'typescript', 'typescriptreact', 'javascriptreact',
-    'html', 'css', 'scss',
-    'elixir', 'heex', 'eex',
-    'json', 'yaml', 'toml', 'twig',
-  },
-  callback = function() vim.treesitter.start() end,
-})
+-- Highlighting is attached by kickstart's FileType autocmd (init.lua, section 9).
 
 -- ============================================================
 -- LSP servers
